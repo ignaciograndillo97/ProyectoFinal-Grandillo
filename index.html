@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+    <h1 style="text-align: center;">Supermercado Online</h1>
+    <div class="searchbar"> 
+        <div>
+            <input type="text" placeholder="Buscar...">
+            <i id="buscador" style="margin-left: 5px;" class="fas fa-search"></i>
+        </div>
+        <div>
+            <p>Carrito: <span id="contadorCarrito">0</span> items - Total: $<span id="totalCarrito">0.00</span>   
+            <button id="verCarritoBtn" class="btn-ver-carrito">
+                    <i class="fas fa-shopping-cart"></i> Ver Carrito
+            </button>
+            </p>
+        </div>
+    </div>
+    <div id="productosTotales" class="lista-productos"></div>
+
+    <div id="modalCarrito" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Tu Carrito</h2>
+                <span class="cerrar-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="listaCarrito">
+            </div>
+            <div class="modal-footer">
+                <div class="total-modal">
+                    <strong>Total:</strong> $<span id="totalModal">0.00</span>
+                </div>
+                <div class="modal-botones">
+                    <button id="vaciarModalBtn" class="btn-vaciar">
+                        <i class="fas fa-trash"></i> Vaciar Carrito
+                    </button>
+                    <button id="cerrarModalBtn" class="btn-cerrar">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
