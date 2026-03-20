@@ -7,28 +7,7 @@ class Producto {
   }
 }
 
-const productos = [
-  new Producto(1, 'Leche', 1200, 'https://www.trainerclub.es/wp-content/uploads/12.jpg'),
-  new Producto(2, 'Pan', 800, 'https://i.blogs.es/512fb8/pan_comun/1200_900.jpg'),
-  new Producto(3, 'Huevos', 1800, 'https://content21.sabervivirtv.com/medio/2023/11/03/huevos_fe2ba96b_231103092853_1280x720.jpg'),
-  new Producto(4, 'Queso', 3500, 'https://www.lacasadelqueso.com.ar/wp-content/uploads/2017/08/parmigiano-reggiano.jpg'),
-  new Producto(5, 'Manzanas', 1500, 'https://www.univision.com/_next/image?url=https%3A%2F%2Fst1.uvnimg.com%2F02%2F2e%2Fd585843e46a79ed947476b55a21c%2Fshutterstock-226100671.jpg&w=1280&q=75'),
-  new Producto(6, 'Arroz', 1100, 'https://tiaclara.com/wp-content/uploads/2012/03/white-rice-instant-pot-DSCF0251.jpg'),
-  new Producto(7, 'Pollo', 3200, 'https://metroio.vtexassets.com/arquivos/ids/290311/Pollo-Entero-Fresco-Metro-x-kg-2-183284.jpg?v=638179316343400000'),
-  new Producto(8, 'Tomates', 1300, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVSrU4sEyFp-DMR2ztqNQ7sj4p_d9MUwB-Rw&s'),
-  new Producto(9, 'Cebollas', 900, 'https://upload.wikimedia.org/wikipedia/commons/3/34/Two_colors_of_onions.jpg'),
-  new Producto(10, 'Yogurt', 1600, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeJY1388t2aN3oyTF1kaGGU1DcxuBMzV3mMg&s'),
-  new Producto(11, 'Cereal', 2500, 'https://arcorencasa.com/wp-content/uploads/2024/10/20241009-14091.webp'),
-  new Producto(12, 'Jabón', 1200, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWp6zzW7t10p2sAT9EgTtxuncZ5NLg62DKtQ&s'),
-  new Producto(13, 'Papel Higiénico', 2800, 'https://softysar.vtexassets.com/arquivos/ids/158369/label-1.png?v=638937235508970000'),
-  new Producto(14, 'Fideos', 900, 'https://www.multifood.com.ar/thumb/000Z-001-002-00734870Z-001-002-007-Matarazzo-Coditos_800x800.jpg'),
-  new Producto(15, 'Aceite', 2200, 'https://www.alyser.com.ar/wp-content/uploads/2024/08/140206307.jpg'),
-  new Producto(16, 'Azúcar', 1300, 'https://www.casa-segal.com/wp-content/uploads/2019/03/azucar-kilo-ledesma-reposteria-mendoza-casa-segal-1-600x600.jpg'),
-  new Producto(17, 'Sal', 500, 'https://carrefourar.vtexassets.com/arquivos/ids/196629/7790072001014.jpg?v=637523688684930000'),
-  new Producto(18, 'Café', 4500, 'https://www.dolce-gusto.com.ar/media/catalog/product/cache/a7ed62b12c9d28aa0842b5a9bc7623a5/h/e/hero_aulait_club.png'),
-  new Producto(19, 'Té', 1800, 'https://carrefourar.vtexassets.com/arquivos/ids/328109/7790387800142_02.jpg?v=638204500032570000')
-];
-
+let productos = []; // Array vacío que se llenará desde la API
 let carrito = [];
 
 function guardarCarrito() {
@@ -55,6 +34,20 @@ function actualizarCarrito() {
   totalSpan.textContent = total.toFixed(2);
   
   guardarCarrito();
+}
+
+async function cargarProductosDesdeAPI() {
+  const respuesta = await fetch('https://demo5225124.mockable.io/listaProductos');
+  const datos = await respuesta.json();
+  
+  productos = datos.map(item => new Producto(
+    item.id,
+    item.nombre,
+    item.precio,
+    item.imagen
+  ));
+  
+  mostrarProductos();
 }
 
 function mostrarProductos() {
@@ -198,7 +191,7 @@ function cerrarModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarCarrito();
-  mostrarProductos();
+  cargarProductosDesdeAPI();
   actualizarCarrito();
   
 
