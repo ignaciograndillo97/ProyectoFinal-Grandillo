@@ -221,7 +221,6 @@ h1 {
     border-radius: 8px;
     width: 90%;
     max-width: 600px;
-    max-height: 80vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -276,7 +275,6 @@ h1 {
     padding: 20px;
     overflow-y: auto;
     flex-grow: 1;
-    max-height: 400px;
 }
 
 /* Productos en el carrito (solo dentro del modal) */
@@ -401,6 +399,25 @@ h1 {
     background-color: #7f8c8d;
 }
 
+.modal .btn-pagar {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+}
+
+.modal .btn-pagar:hover {
+    background-color: #2573a7;
+}
+
+
 .modal .carrito-vacio {
     text-align: center;
     padding: 40px;
@@ -470,4 +487,53 @@ h1 {
         width: 100%;
         justify-content: center;
     }
+}
+
+
+
+#modalPago input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#modalPago button {
+    width: 100%;
+    padding: 10px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#modalPago button:hover {
+    background: #2980b9;
+}
+
+.cerrar-modal-pago {
+        font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#ciudad {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+#ciudad:focus {
+    outline: none;
+    border-color: #4a90e2;
 }

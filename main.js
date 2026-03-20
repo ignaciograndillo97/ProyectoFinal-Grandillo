@@ -7,7 +7,7 @@ class Producto {
   }
 }
 
-let productos = []; // Array vacío que se llenará desde la API
+let productos = [];
 let carrito = [];
 
 function guardarCarrito() {
@@ -243,4 +243,69 @@ document.addEventListener('DOMContentLoaded', () => {
       cerrarModal();
     }
   });
+
+    // Botón Pagar del carrito
+  const pagarBtn = document.getElementById('pagarBtn');
+  if(pagarBtn) {
+      pagarBtn.addEventListener('click', abrirModalPago);
+  }
+
+  // Botón cerrar del modal de pago
+  const cerrarPago = document.querySelector('.cerrar-modal-pago');
+  if(cerrarPago) {
+      cerrarPago.addEventListener('click', cerrarModalPago);
+  }
+
+  // Botón pagar ahora
+  const btnPagarAhora = document.getElementById('btnPagarAhora');
+  if(btnPagarAhora) {
+      btnPagarAhora.addEventListener('click', procesarPago);
+  }
+
 });
+
+
+// Abrir modal de pago
+function abrirModalPago() {
+    document.getElementById('modalPago').style.display = 'block';
+    cerrarModal(); // Cierra el modal del carrito
+}
+
+// Cerrar modal de pago
+function cerrarModalPago() {
+    document.getElementById('modalPago').style.display = 'none';
+}
+
+// Procesar pago
+function procesarPago() {
+    const numero = document.getElementById('numeroTarjeta').value;
+    const fecha = document.getElementById('fechaExpiracion').value;
+    const cvv = document.getElementById('cvv').value;
+    const nombre = document.getElementById('nombreTarjeta').value;
+    
+    if(!numero || !fecha || !cvv || !nombre) {
+        Swal.fire({
+        icon: "error",
+        title: "Datos incompletos",
+        text: "Completa todos los campos para procesar el pago",
+        confirmButtonText: "Aceptar"
+        });
+        return;
+    }
+    
+    const total = carrito.reduce((suma, producto) => suma + producto.precio, 0);
+        Swal.fire({
+        title: "Pago realizado",
+        icon: "success",
+        text: `✅ Pago realizado\nTotal: $${total.toFixed(2)}\nGracias ${nombre}!`,
+        confirmButtonText: "Aceptar"
+        });
+    
+    vaciarCarrito();
+    cerrarModalPago();
+    
+    document.getElementById('numeroTarjeta').value = '';
+    document.getElementById('fechaExpiracion').value = '';
+    document.getElementById('cvv').value = '';
+    document.getElementById('nombreTarjeta').value = '';
+}
